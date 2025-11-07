@@ -1,0 +1,64 @@
+:host {
+    .json-viewer {
+        width: max-content;
+        background: #1e1e1e;
+        color: #d4d4d4;
+        font-family: monospace;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #333;
+
+        position: absolute !important;
+        top: 0.5em;
+        z-index: 10000 !important;
+        /* must be above map layers */
+        pointer-events: auto;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 10px;
+            background: #252526;
+            font-weight: bold;
+
+            .actions button {
+                background: none;
+                border: none;
+                color: #9cdcfe;
+                margin-left: 6px;
+                cursor: pointer;
+                font-size: 0.85rem;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .json-content {
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+
+        .indent {
+            margin-left: 20px;
+        }
+
+        .key {
+            color: #9cdcfe;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .number {
+            color: #b5cea8;
+        }
+
+        .boolean {
+            color: #569cd6;
+        }
+    }
+}

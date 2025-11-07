@@ -1,0 +1,51 @@
+<div class="search-input-box draggable">
+    <div class="search-input-group">
+        <input type="search" [placeholder]="placeholder" [value]="value" (input)="onInput($event)"
+            (focus)="onFocus($event)" (keydown.enter)="onSearch()"/>
+        <a class="add-btn" title="Add this marker to input" aria-label="Add marker to current search input"
+            (click)="addCurrent()">
+            <svg class="add-marker-icon" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <!-- Map pin -->
+                <path class="pin" d="M8 8a3.5 3.5 0 1 1 7 0c0 2.1-3.5 7.2-3.5 7.2S8 10.1 8 8z" />
+                <circle class="pin-dot" cx="11.5" cy="8" r="1.3" />
+
+                <!-- Input box outline -->
+                <rect class="input-box" x="14.5" y="6.5" width="6.5" height="5.5" rx="1.2" ry="1.2" />
+
+                <!-- Arrow from pin to input -->
+                <path class="arrow" d="M11.5 8 h4.5" marker-end="url(#arrowhead)" />
+                <defs>
+                    <marker id="arrowhead" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+                        <path d="M0,0 L4,2 L0,4 Z" class="arrow-head" />
+                    </marker>
+                </defs>
+
+                <!-- Small add (+) badge -->
+                <g class="plus-group" transform="translate(20.4,5.2)">
+                    <circle class="plus-bg" cx="0" cy="0" r="2.7" />
+                    <rect class="plus-v" x="-0.45" y="-1.4" width="0.9" height="2.8" rx="0.25" />
+                    <rect class="plus-h" x="-1.4" y="-0.45" width="2.8" height="0.9" rx="0.25" />
+                </g>
+            </svg>
+        </a>
+        <!-- <div *ngIf="controlName![0] !== 'end'" class="add-icon" type="button" (click)="addLocation()">location</div> -->
+        <a *ngIf="controlName![0] !== 'end'" class="add-btn" title="Add intermediate stop"
+            aria-label="Add intermediate stop" (click)="addLocation()">
+            <!-- Inline SVG -->
+            <svg class="add-icon" viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+                <!-- curved route (dotted) -->
+                <path class="route" d="M3.5 14.5 C6.5 8.5, 11.5 8.5, 14.5 12.5" />
+                <!-- nodes on the route -->
+                <circle class="node node-a" cx="3.5" cy="14.5" r="1.6" />
+                <circle class="node node-b" cx="9.8" cy="11.3" r="1.2" />
+                <circle class="node node-c" cx="14.5" cy="12.5" r="1.6" />
+                <!-- plus sign in a circle overlay (add) -->
+                <g class="plus-group" transform="translate(17,5)">
+                    <circle class="plus-bg" cx="0" cy="0" r="3.5" />
+                    <rect class="plus-v" x="-0.6" y="-2" width="1.2" height="4" rx="0.3" />
+                    <rect class="plus-h" x="-2" y="-0.6" width="4" height="1.2" rx="0.3" />
+                </g>
+            </svg>
+        </a>
+    </div>
+</div>

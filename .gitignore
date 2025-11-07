@@ -1,18 +1,20 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Compiled output
+# compiled output
 /dist
 /tmp
 /out-tsc
+# Only exists if Bazel was run
 /bazel-out
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# dependencies
+/node_modules*
+
+# profiling files
+chrome-profiler-events*.json
 
 # IDEs and editors
-.idea/
+/.idea
 .project
 .classpath
 .c9/
@@ -20,23 +22,33 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
-# Visual Studio Code
-.vscode/*
+# IDE - VSCode
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
 
-# Miscellaneous
+# misc
 /.angular/cache
-.sass-cache/
+/.sass-cache
 /connect.lock
 /coverage
 /libpeerconnection.log
+npm-debug.log
+yarn-error.log
 testem.log
 /typings
 
-# System files
+# System Files
 .DS_Store
 Thumbs.db
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/artkubika/CopilotIndices/17.13.441.19478/CodeChunks.db
+.vs/artkubika/CopilotIndices/17.13.441.19478/SemanticSymbols.db
+.vs/artkubika/FileContentIndex/6462ca6e-bbf6-4195-b73b-a1c3a8b57150.vsidx
+.vs/artkubika/FileContentIndex/13427924-8b69-4f68-afa8-a0eb2c51e589.vsidx
+src/assets/config.json
+config.json

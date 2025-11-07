@@ -1,0 +1,11 @@
+<div class="layer-list">
+    <ul class="pretty-list">
+        <ng-container *ngFor="let layer of layers">
+            <li>
+                <input #it id="{{layer.getId()}}" type="checkbox" [checked]="layerActivity.get(layer.getId())"
+                    (click)="toggle(layer.getId())" /> &nbsp; - &nbsp;
+                <label for="{{layer.getId()}}">{{layer.getId()}}</label>
+            </li>
+        </ng-container>
+    </ul>
+</div>

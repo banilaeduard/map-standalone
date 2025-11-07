@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">art-kubika</string>
+    <string name="title_activity_main">art-kubika</string>
+    <string name="package_name">com.bartazeu.maps</string>
+    <string name="custom_url_scheme">com.bartazeu.maps</string>
+</resources>

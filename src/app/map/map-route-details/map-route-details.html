@@ -1,0 +1,38 @@
+<div class="json-viewer">
+    <div class="header">
+        <span>JSON Viewer</span>
+        <div class="actions">
+            <button (click)="toggleCollapse()">
+                {{ isCollapsed ? 'Expand' : 'Collapse' }}
+            </button>
+            <button (click)="copyJson()">Copy</button>
+        </div>
+    </div>
+
+    <div *ngIf="!isCollapsed" class="json-content">
+        <ng-container *ngTemplateOutlet="renderJson; context: { $implicit: data | async }"></ng-container>
+    </div>
+
+    <ng-template #renderJson let-value>
+        <ng-container *ngIf="isObject(value); else primitive">
+            <span class="brace">&#123;</span> <!-- literal "{" -->
+            <div class="indent">
+                <div *ngFor="let key of getKeys(value)">
+                    <span class="key">"{{ key }}"</span>:
+                    <ng-container *ngTemplateOutlet="renderJson; context: { $implicit: value[key] }"></ng-container>
+                </div>
+            </div>
+            <span class="brace">&#125;</span> <!-- literal "}" -->
+        </ng-container>
+
+        <ng-template #primitive>
+            <span [ngClass]="{
+    string: isString(value),
+    number: isNumber(value),
+    boolean: isBoolean(value)
+  }">
+                {{ value | json }}
+            </span>
+        </ng-template>
+    </ng-template>
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+    <button *ngIf="searchContainer.style.display !== 'none'" pButton label="Hide" icon="pi pi-minus"
+        class="p-button-text info" (click)="searchContainer.style.display='none'"></button>
+    <button *ngIf="searchContainer.style.display === 'none'" pButton label="Show" icon="pi pi-plus"
+        class="p-button-text info" (click)="searchContainer.style.display='flex'"></button>
+    <button pButton label="Clear markers" icon="pi pi-times" class="p-button-text clear info"
+        *ngIf="datasource.getShapes()?.length" (click)="clearSearch(true)"></button>
+    <button pButton label="Start" icon="pi pi-car" class="p-button-text info" [disabled]="!canRoute" id="startRoute"
+        (click)="startRoute()"></button>
+    <div #searchContainer id="search-container">
+        <form [formGroup]="form" id="inputs">
+            <app-search-input formControlName="start" (search)="performSearch($event.controlValue, $event.controlName)"
+                (addMarker)="addPosition($event)" (focus)="currentKey = 'start'" [placeholder]="'Search start'">
+            </app-search-input>
+            <span formArrayName="inter" cdkDropList>
+                <div *ngFor="let item of formControls.controls" [formGroupName]="item.value.i">
+                    <app-search-input [frmGrp]="item" formControlName="input"
+                        (search)="performSearch($event.controlValue, $event.controlName)"
+                        (addMarker)="addPosition($event)" (focus)="currentKey = item.value.key"
+                        [placeholder]="'Search ' + item.value.i">
+                    </app-search-input>
+                </div>
+            </span>
+            <app-search-input formControlName="end" (search)="performSearch($event.controlValue, $event.controlName)"
+                (addMarker)="addPosition($event)" (focus)="currentKey = 'end'" [placeholder]="'Search end'">
+            </app-search-input>
+        </form>
+        <ul #resultpanel *ngIf="currentKey !== undefined && featureSet.get(currentKey)" id="results-panel">
+            <ng-container *ngFor="let feature of currentFeatures">
+                <li (click)="itemClicked(feature.id)" [class.selected]="selectedSet.get(currentKey)?.id == feature.id">
+                    <div class="info"
+                        *ngIf="feature.properties?.name && feature.properties?.name !=feature.properties?.address?.freeformAddress">
+                        {{feature.properties.name}}</div>
+                    <div #txt class="title">
+                        <b>{{feature.properties?.address?.freeformAddress}}</b><br />
+                    </div>
+                    <div *ngIf="feature.properties?.poi" class="info">
+                        <div *ngIf="feature.properties.poi.phone" class="info">phone: {{feature.properties.poi.phone}}
+                        </div>
+                        <div *ngIf="feature.properties.poi.url" class="info"><a target="_blank"
+                                [href]="'http://' + feature.properties.poi.url">http://{{feature.properties.poi.url}}</a>
+                        </div>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>

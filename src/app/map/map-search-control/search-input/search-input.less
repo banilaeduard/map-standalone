@@ -1,0 +1,267 @@
+:host {
+    display: block;
+    box-shadow: 0 24px 74px rgba(0, 0, 0, 0.32);
+    border: 1px solid #ccc;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+}
+
+:host(:hover) {
+    opacity: 1;
+}
+
+.draggable {
+    padding-right: 10px;
+    margin: 0.1em;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    cursor: grab;
+    transition: transform 0.2s ease;
+    user-select: none;
+    /* Prevents text selection */
+    -webkit-user-drag: none;
+    /* Prevents image dragging (Safari) */
+    -webkit-user-select: none;
+    /* For Safari */
+    -moz-user-select: none;
+    /* For Firefox */
+    -ms-user-select: none;
+}
+
+.cdk-drag-dragging {
+    opacity: 0.7;
+}
+
+/* main wrapper */
+.search-input-box {
+    background: #fff;
+    height: 72px;
+}
+
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.add-btn:focus {
+    outline: 2px solid rgba(11, 105, 255, 0.25);
+    outline-offset: 3px;
+}
+
+/* size control (change --size to scale) */
+.add-icon {
+    width: 32px;
+    height: 32px;
+    overflow: visible;
+    display: block;
+}
+
+/* route (dotted curved line) */
+.add-icon .route {
+    fill: none;
+    stroke: #0b69ff;
+    /* primary color */
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 4 3;
+    /* dotted/dashed feel like a planned route */
+    opacity: 0.95;
+    /* subtle animated dash to imply "suggestion" / motion */
+    animation: route-dash 1.6s linear infinite;
+}
+
+@keyframes route-dash {
+    to {
+        stroke-dashoffset: -28;
+    }
+}
+
+/* route nodes */
+.add-icon .node {
+    fill: #ffffff;
+    stroke: #0b69ff;
+    stroke-width: 1.4;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 160ms ease, r 160ms ease;
+}
+
+/* center node slightly smaller to suggest intermediary */
+.add-icon .node-b {
+    r: 1.2;
+}
+
+/* plus badge */
+.add-icon .plus-bg {
+    fill: #ffffff;
+    stroke: #0b69ff;
+    stroke-width: 1.2;
+}
+
+.add-icon .plus-v,
+.add-icon .plus-h {
+    fill: #0b69ff;
+}
+
+/* hover / focus affordance (scale nodes and badge) */
+.add-btn:hover .add-icon .node,
+.add-btn:focus .add-icon .node {
+    transform: scale(1.12);
+}
+
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.add-btn:focus {
+    outline: 2px solid rgba(11, 105, 255, 0.25);
+    outline-offset: 3px;
+}
+
+/* --- icon sizing --- */
+.add-marker-icon {
+    width: 32px;
+    height: 32px;
+    overflow: visible;
+    display: block;
+}
+
+/* --- map pin --- */
+.add-marker-icon .pin {
+    fill: none;
+    stroke: #0b69ff;
+    stroke-width: 1.5;
+}
+
+.add-marker-icon .pin-dot {
+    fill: #0b69ff;
+}
+
+/* --- input box (destination) --- */
+.add-marker-icon .input-box {
+    fill: #ffffff;
+    stroke: #0b69ff;
+    stroke-width: 1.2;
+}
+
+/* --- arrow --- */
+.add-marker-icon .arrow {
+    stroke: #0b69ff;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    animation: arrow-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+
+    0%,
+    100% {
+        stroke-dasharray: 4 4;
+        stroke-dashoffset: 0;
+        opacity: 0.8;
+    }
+
+    50% {
+        stroke-dasharray: 4 4;
+        stroke-dashoffset: -4;
+        opacity: 1;
+    }
+}
+
+.add-marker-icon .arrow-head {
+    fill: #0b69ff;
+}
+
+/* --- plus badge (same style) --- */
+.add-marker-icon .plus-bg {
+    fill: #ffffff;
+    stroke: #0b69ff;
+    stroke-width: 1.1;
+}
+
+.add-marker-icon .plus-v,
+.add-marker-icon .plus-h {
+    fill: #0b69ff;
+}
+
+/* --- hover / focus effects --- */
+.add-btn:hover .add-marker-icon .plus-bg,
+.add-btn:focus .add-marker-icon .plus-bg {
+    transform: scale(1.08);
+    transform-box: fill-box;
+    transition: transform 120ms ease;
+}
+
+.add-btn:hover .add-marker-icon .pin-dot {
+    transform: scale(1.15);
+    transform-box: fill-box;
+    transition: transform 120ms ease;
+}
+
+.add-btn:active .add-marker-icon {
+    transform: scale(0.98);
+}
+
+.add-btn:hover .add-icon .plus-bg,
+.add-btn:focus .add-icon .plus-bg {
+    transform: scale(1.06);
+    transform-box: fill-box;
+}
+
+/* make hover transitions smoother */
+.add-icon .plus-bg,
+.add-icon .plus-v,
+.add-icon .plus-h {
+    transition: transform 120ms ease, fill 120ms ease;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* optional pressed state */
+.add-btn:active .add-icon {
+    transform: scale(0.98);
+}
+
+/* inner group containing icon + input */
+.search-input-group {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 1px dotted #ccc;
+    display: flex;
+    align-items: center;
+}
+
+/* input field */
+.search-input-group input {
+    flex: 1;
+    height: 100%;
+    margin: 0;
+    padding: 0 5px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-input-group input::placeholder {
+    color: #999;
+}

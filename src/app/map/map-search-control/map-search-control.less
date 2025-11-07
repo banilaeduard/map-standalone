@@ -1,0 +1,97 @@
+:host {
+    /* must be above map layers */
+    pointer-events: all;
+    background-color: antiquewhite;
+    opacity: 0.9;
+
+    #search-container {
+        display: flex;
+        max-height: 40vh;
+    }
+
+    ::ng-deep .pulsating-radius {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        /* radius diameter in pixels */
+        height: 200px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: rgba(0, 176, 155, 0.25);
+        /* semi-transparent greenish tone */
+        box-shadow: 0 0 40px rgba(0, 176, 155, 0.4);
+        animation: pulseRing 2.4s ease-out infinite;
+        pointer-events: none;
+        /* let map be interactive */
+    }
+
+    @keyframes pulseRing {
+        0% {
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0.8;
+        }
+
+        60% {
+            transform: translate(-50%, -50%) scale(1.4);
+            opacity: 0.3;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.5;
+        }
+    }
+
+    #startRoute:disabled {
+        pointer-events: none;
+        color: red;
+    }
+
+    .clear {
+        opacity: 1;
+        color: red;
+    }
+
+    .selected {
+        background-color: aquamarine;
+    }
+
+    #inputs {
+        overflow-y: auto;
+    }
+
+    #results-panel {
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        list-style: none;
+        overflow-y: auto;
+        z-index: 99999;
+    }
+
+    #results-panel>li {
+        border-top: 1px dotted #ccc;
+        padding: 10px 20px;
+        z-index: 99999;
+        max-width: 35vw;
+    }
+
+    #results-panel>li:hover:not(.selected) {
+        background-color: #f1f2f2;
+        cursor: pointer;
+    }
+
+    #results-panel>li>.title {
+        font-family: segoeui-b;
+        line-height: 14pt;
+        width: 100%;
+    }
+
+    #results-panel>li>.info {
+        width: 100%;
+        line-height: 14pt;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}

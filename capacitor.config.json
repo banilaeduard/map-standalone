@@ -1,0 +1,6 @@
+{
+  "webDir": "dist/mapngular/browser",
+  "appId": "com.bartazeu.maps",
+  "appName": "art-kubika",
+  "bundledWebRuntime": false
+}
