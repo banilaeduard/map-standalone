@@ -1,12 +1,12 @@
 <div class="container">
-    <button *ngIf="searchContainer.style.display !== 'none'" pButton label="Hide" icon="pi pi-minus"
-        class="p-button-text info" (click)="searchContainer.style.display='none'"></button>
-    <button *ngIf="searchContainer.style.display === 'none'" pButton label="Show" icon="pi pi-plus"
-        class="p-button-text info" (click)="searchContainer.style.display='flex'"></button>
-    <button pButton label="Clear markers" icon="pi pi-times" class="p-button-text clear info"
-        *ngIf="datasource.getShapes()?.length" (click)="clearSearch(true)"></button>
-    <button pButton label="Start" icon="pi pi-car" class="p-button-text info" [disabled]="!canRoute" id="startRoute"
-        (click)="startRoute()"></button>
+    <button *ngIf="searchContainer.style.display !== 'none'" class="info"
+        (click)="searchContainer.style.display='none'">Hide</button>
+    <button *ngIf="searchContainer.style.display === 'none'" class="info"
+        (click)="searchContainer.style.display='flex'">Show</button>
+    <button pButton label="Clear markers" class="info" *ngIf="datasource.getShapes()?.length"
+        (click)="clearSearch(true)">Clear markers</button>
+    <button pButton label="Start" class="info" [disabled]="!canRoute" id="startRoute"
+        (click)="startRoute()">Start</button>
     <div #searchContainer id="search-container">
         <form [formGroup]="form" id="inputs">
             <app-search-input formControlName="start" (search)="performSearch($event.controlValue, $event.controlName)"

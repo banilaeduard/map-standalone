@@ -23,6 +23,9 @@
             "polyfills": [
               "zone.js"
             ],
+            "allowedCommonJsDependencies": [
+              "azure-maps-rest"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": [
@@ -34,6 +37,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/azure-maps-control/dist/atlas.min.css",
               "src/styles.less"
             ],
             "scripts": []
@@ -100,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "35c1c797-7767-4f70-b43a-179aa34efa4f"
   }
 }

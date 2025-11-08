@@ -1,12 +1,10 @@
 <div class="container">
-    <button *ngIf="searchContainer.style.display !== 'none'" pButton label="Hide POI" icon="pi pi-minus"
-        class="p-button-text info" (click)="searchContainer.style.display='none'"></button>
-    <button *ngIf="searchContainer.style.display === 'none'" pButton label="Show POI" icon="pi pi-plus"
-        class="p-button-text info" (click)="searchContainer.style.display='flex'"></button>
-    <button pButton label="Clear markers" icon="pi pi-times" class="p-button-text clear info"
-        *ngIf="poiSource.getShapes()?.length" (click)="clearMarkers()"></button>
-    <button pButton label="Search along route" icon="pi pi-car" class="p-button-text clear info" *ngIf="!!route"
-        (click)="searchAlongRoute()"></button>
+    <button *ngIf="searchContainer.style.display !== 'none'" class="info" (click)="searchContainer.style.display='none'">Hide
+        POI</button>
+    <button *ngIf="searchContainer.style.display === 'none'" class="info" (click)="searchContainer.style.display='flex'">Show
+        POI</button>
+    <button pButton *ngIf="poiSource.getShapes()?.length" class="info" (click)="clearMarkers()">Clear markers</button>
+    <button pButton *ngIf="!!route" class="info" (click)="searchAlongRoute()">Search along route</button>
 
     <div #searchContainer class="search-container">
         <form [formGroup]="form" id="inputs">
